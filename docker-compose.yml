@@ -1,0 +1,31 @@
+# /docker-compose.yml
+
+services:
+  nuxtjs-init:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.init
+    volumes:
+      - .:/app
+
+  nuxtjs-dev:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./intrepion-to-do-nuxt-js:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+
+  nuxtjs-prod:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.publish
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production

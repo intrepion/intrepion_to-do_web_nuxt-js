@@ -15,7 +15,7 @@ version_npm="11.0.0"
 npm install --global npm@${version_npm}
 
 # Create Nuxt.js application
-npx nuxi@latest init ${app_name}
+yes | npx nuxi@latest init ${app_name} --gitInit no --packageManager npm
 
 # Move into the project directory
 cd ${app_name}
